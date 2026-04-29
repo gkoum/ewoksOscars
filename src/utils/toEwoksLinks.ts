@@ -4,6 +4,13 @@ import { convertRFMarkerEndToEwoks, hasDefinedFields } from '../utils/utils';
 import { isString } from './typeGuards';
 import { calcDataMapping, notUndefinedValue } from './utils';
 
+function handleRequired(required: boolean | 'auto' | undefined) {
+  if (required === undefined || required === 'auto') {
+    return {};
+  }
+  return { required };
+}
+
 // EwoksRFLinks --> EwoksLinks for saving
 export function toEwoksLinks(links: EdgeWithData[]): EwoksLink[] {
   const tempLinks: EdgeWithData[] = [...links].filter(
@@ -67,8 +74,8 @@ export function toEwoksLinks(links: EdgeWithData[]): EwoksLink[] {
         ...(conditionsValue && {
           conditions: conditionsValue,
         }),
+        ...handleRequired(required),
         ...notUndefinedValue(on_error, 'on_error'),
-        ...notUndefinedValue(required, 'required'),
         ...notUndefinedValue(map_all_data, 'map_all_data'),
         ...(hasDefinedFields(linkUiProps) && { uiProps: linkUiProps }),
       };

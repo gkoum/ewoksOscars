@@ -31,15 +31,18 @@ export interface EwoksIONode {
   uiProps?: EwoksIONodeUiProps;
 }
 
-// TODO: examine with ewoks if all the following are needed in an InOutLink
-export interface EwoksIOLinkAttributes {
-  label?: string;
-  comment?: string;
+interface BaseLink {
   conditions?: EwoksCondition[];
   data_mapping?: EwoksDataMapping[];
   map_all_data?: boolean;
   on_error?: boolean;
   required?: boolean;
+}
+
+// TODO: examine with ewoks if all the following are needed in an InOutLink
+export interface EwoksIOLinkAttributes extends BaseLink {
+  label?: string;
+  comment?: string;
 }
 
 export interface EwoksIONodeUiProps {
@@ -121,16 +124,11 @@ export interface EwoksNodeUiProps {
   outputs?: SubgraphOutputsInputs[];
 }
 
-export interface EwoksLink {
+export interface EwoksLink extends BaseLink {
   source: string;
   sub_source?: string;
   target: string;
   sub_target?: string;
-  data_mapping?: EwoksDataMapping[];
-  map_all_data?: boolean;
-  conditions?: EwoksCondition[];
-  required?: boolean;
-  on_error?: boolean;
   uiProps?: EwoksLinkUiProps;
   startEnd?: boolean;
 }
