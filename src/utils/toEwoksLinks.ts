@@ -33,6 +33,7 @@ export function toEwoksLinks(links: EdgeWithData[]): EwoksLink[] {
         sub_target,
         data_mapping,
         conditions,
+        cache_if_optional,
       },
       type,
       markerEnd,
@@ -78,6 +79,7 @@ export function toEwoksLinks(links: EdgeWithData[]): EwoksLink[] {
         ...notUndefinedValue(on_error, 'on_error'),
         ...notUndefinedValue(map_all_data, 'map_all_data'),
         ...(hasDefinedFields(linkUiProps) && { uiProps: linkUiProps }),
+        ...notUndefinedValue(cache_if_optional, 'cache_if_optional'),
       };
     },
   );

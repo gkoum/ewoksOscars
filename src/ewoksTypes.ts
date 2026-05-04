@@ -37,6 +37,7 @@ interface BaseLink {
   map_all_data?: boolean;
   on_error?: boolean;
   required?: boolean;
+  cache_if_optional?: boolean;
 }
 
 // TODO: examine with ewoks if all the following are needed in an InOutLink

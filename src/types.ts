@@ -128,6 +128,7 @@ export interface LinkData {
   on_error?: boolean;
   map_all_data?: boolean;
   required?: boolean | 'auto';
+  cache_if_optional?: boolean;
   sub_target?: string;
   sub_target_attributes?: Record<string, unknown>;
   sub_source?: string;
