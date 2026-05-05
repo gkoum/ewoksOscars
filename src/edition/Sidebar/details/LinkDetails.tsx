@@ -88,6 +88,13 @@ export default function LinkDetails(selectedElement: Edge) {
           }
           label="On Error condition"
         />
+        <SidebarCheckbox
+          value={edgeData.cache_if_optional}
+          onChange={(checked) =>
+            mergeEdgeData(selectedElement.id, { cache_if_optional: checked })
+          }
+          label="Cache inputs even if optional"
+        />
         <RequiredLinkControl
           value={edgeData.required}
           onChange={(checked) =>

@@ -9,6 +9,7 @@ it('click on a link and see its details in the sidebar ', () => {
     cy.contains('Conditions').should('be.visible');
     cy.contains('Data Mapping').should('be.visible');
     cy.contains('Required').should('be.visible');
+    cy.contains('Cache inputs even if optional').should('be.visible');
     cy.contains('Source').should('be.visible');
     cy.contains('Target').should('be.visible');
     cy.contains('Output').scrollIntoView().should('be.visible');

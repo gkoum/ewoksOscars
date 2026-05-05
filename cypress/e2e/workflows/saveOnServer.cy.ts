@@ -294,6 +294,8 @@ it('saves a workflow with a link, and saves the workflow after populating the li
 
   cy.contains('Animated').siblings().click();
 
+  cy.findByLabelText('Cache inputs even if optional').check();
+
   cy.intercept('PUT', `api/**/workflow/${id}`, (req) => {
     // Delete unreliable position property
     delete req.body.nodes[0].uiProps.position;
@@ -327,6 +329,7 @@ it('saves a workflow with a link, and saves the workflow after populating the li
           ],
           conditions: [{ source_output: 'outputConditions', value: true }],
           on_error: false,
+          cache_if_optional: true,
           uiProps: {
             label: 'linkLabel',
             comment: 'linkComment',
